@@ -269,17 +269,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">event_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">VirtualTimeScheduler</span><span class="o">.</span><span class="n">Event</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_time</span> <span class="o">+</span> <span class="n">component</span><span class="o">.</span><span class="n">interval</span><span class="p">,</span> <span class="n">component</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_time</span>
-</div></div>
-<span class="k">class</span> <span class="nc">RealTimeSyncScheduler</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    `RealTimeSyncScheduler` is a `Scheduler` implementation for real time in</span>
-<span class="sd">    a synced manner.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">RealTimeSyncScheduler</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="n">interval</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_time</span></div></div>
 </pre></div>
 
           </div>
