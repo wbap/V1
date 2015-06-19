@@ -58,13 +58,13 @@
 <span class="sd">module.py</span>
 <span class="sd">=====</span>
 
-<span class="sd">This module contains the class `Module` and `CognitiveArchitecture` which serve</span>
+<span class="sd">This module contains the class `Module` and `Agent` which serve</span>
 <span class="sd">as abstractions for distict areas in the brain or sub-regions of those areas.</span>
 <span class="sd">`Module`s together with `Component`s are collectively reffered to as `Unit`s.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Module&quot;</span><span class="p">,</span> <span class="s">&quot;CognitiveArchitecture&quot;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Module&quot;</span><span class="p">,</span> <span class="s">&quot;Agent&quot;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
@@ -225,26 +225,26 @@
 
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
 </div></div>
-<div class="viewcode-block" id="CognitiveArchitecture"><a class="viewcode-back" href="../../brica1/brica1.html#brica1.module.CognitiveArchitecture">[ドキュメント]</a><span class="k">class</span> <span class="nc">CognitiveArchitecture</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="Agent"><a class="viewcode-back" href="../../brica1/brica1.html#brica1.module.Agent">[ドキュメント]</a><span class="k">class</span> <span class="nc">Agent</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A `CognitiveArchitecture` is a `Module` which serves as a top-level</span>
+<span class="sd">    A `Agent` is a `Module` which serves as a top-level</span>
 <span class="sd">    container for functional `Module`s.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scheduler</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Create a new `CognitiveArchitecture` instance.</span>
+        <span class="sd">&quot;&quot;&quot; Create a new `Agent` instance.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">          scheduler (Scheduler): a scheduler to schedule `Component` firing.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">          CognitiveArchitecture: a new `CognitiveArchitecture` instance.</span>
+<span class="sd">          Agent: a new `Agent` instance.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">CognitiveArchitecture</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Agent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">=</span> <span class="n">scheduler</span>
 
-<div class="viewcode-block" id="CognitiveArchitecture.step"><a class="viewcode-back" href="../../brica1/brica1.html#brica1.module.CognitiveArchitecture.step">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Agent.step"><a class="viewcode-back" href="../../brica1/brica1.html#brica1.module.Agent.step">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;  Step the `Scheduler`.</span>
 
 <span class="sd">        Args:</span>
@@ -257,8 +257,8 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 </div>
-<div class="viewcode-block" id="CognitiveArchitecture.update_scheduler"><a class="viewcode-back" href="../../brica1/brica1.html#brica1.module.CognitiveArchitecture.update_scheduler">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">update_scheduler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Udpate the `Scheduler` with this `CognitiveArchitecture`.</span>
+<div class="viewcode-block" id="Agent.update_scheduler"><a class="viewcode-back" href="../../brica1/brica1.html#brica1.module.Agent.update_scheduler">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">update_scheduler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Udpate the `Scheduler` with this `Agent`.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">          None.</span>
@@ -270,7 +270,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="CognitiveArchitecture.add_submodule"><a class="viewcode-back" href="../../brica1/brica1.html#brica1.module.CognitiveArchitecture.add_submodule">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">add_submodule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">submodule</span><span class="p">):</span>
+<div class="viewcode-block" id="Agent.add_submodule"><a class="viewcode-back" href="../../brica1/brica1.html#brica1.module.Agent.add_submodule">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">add_submodule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">submodule</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Add a `Module` and update the `Scheduler`.</span>
 
 <span class="sd">        Args:</span>
@@ -282,7 +282,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">CognitiveArchitecture</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">submodule</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Agent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">submodule</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_scheduler</span><span class="p">()</span></div></div>
 </pre></div>
 

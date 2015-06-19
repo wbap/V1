@@ -332,7 +332,7 @@ out_id (str): port id to map to.</dd>
 <span id="brica1-module-module"></span><h2>brica1.module module<a class="headerlink" href="#module-brica1.module" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="module-py">
 <h3>module.py<a class="headerlink" href="#module-py" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>This module contains the class <cite>Module</cite> and <cite>CognitiveArchitecture</cite> which serve
+<p>This module contains the class <cite>Module</cite> and <cite>Agent</cite> which serve
 as abstractions for distict areas in the brain or sub-regions of those areas.
 <a href="#id11"><span class="problematic" id="id12">`</span></a>Module`s together with <a href="#id13"><span class="problematic" id="id14">`</span></a>Component`s are collectively reffered to as <a href="#id15"><span class="problematic" id="id16">`</span></a>Unit`s.</p>
 <dl class="class">
@@ -443,14 +443,14 @@ submodule (Module): a module to add for <cite>id</cite>.</dd>
 </dd></dl>
 
 <dl class="class">
-<dt id="brica1.module.CognitiveArchitecture">
-<em class="property">class </em><code class="descclassname">brica1.module.</code><code class="descname">CognitiveArchitecture</code><span class="sig-paren">(</span><em>scheduler</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/module.html#CognitiveArchitecture"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.module.CognitiveArchitecture" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="brica1.module.Agent">
+<em class="property">class </em><code class="descclassname">brica1.module.</code><code class="descname">Agent</code><span class="sig-paren">(</span><em>scheduler</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/module.html#Agent"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.module.Agent" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>ベースクラス: <a class="reference internal" href="#brica1.module.Module" title="brica1.module.Module"><code class="xref py py-class docutils literal"><span class="pre">brica1.module.Module</span></code></a></p>
-<p>A <cite>CognitiveArchitecture</cite> is a <cite>Module</cite> which serves as a top-level
+<p>A <cite>Agent</cite> is a <cite>Module</cite> which serves as a top-level
 container for functional <a href="#id27"><span class="problematic" id="id28">`</span></a>Module`s.</p>
 <dl class="method">
-<dt id="brica1.module.CognitiveArchitecture.add_submodule">
-<code class="descname">add_submodule</code><span class="sig-paren">(</span><em>id</em>, <em>submodule</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/module.html#CognitiveArchitecture.add_submodule"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.module.CognitiveArchitecture.add_submodule" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="brica1.module.Agent.add_submodule">
+<code class="descname">add_submodule</code><span class="sig-paren">(</span><em>id</em>, <em>submodule</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/module.html#Agent.add_submodule"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.module.Agent.add_submodule" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Add a <cite>Module</cite> and update the <cite>Scheduler</cite>.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -462,8 +462,8 @@ submodule (Module): a module to add for <cite>id</cite>.</dd>
 </dd></dl>
 
 <dl class="method">
-<dt id="brica1.module.CognitiveArchitecture.step">
-<code class="descname">step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/module.html#CognitiveArchitecture.step"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.module.CognitiveArchitecture.step" title="この定義へのパーマリンク">¶</a></dt>
+<dt id="brica1.module.Agent.step">
+<code class="descname">step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/module.html#Agent.step"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.module.Agent.step" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Step the <cite>Scheduler</cite>.</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -474,9 +474,9 @@ submodule (Module): a module to add for <cite>id</cite>.</dd>
 </dd></dl>
 
 <dl class="method">
-<dt id="brica1.module.CognitiveArchitecture.update_scheduler">
-<code class="descname">update_scheduler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/module.html#CognitiveArchitecture.update_scheduler"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.module.CognitiveArchitecture.update_scheduler" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Udpate the <cite>Scheduler</cite> with this <cite>CognitiveArchitecture</cite>.</p>
+<dt id="brica1.module.Agent.update_scheduler">
+<code class="descname">update_scheduler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/module.html#Agent.update_scheduler"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.module.Agent.update_scheduler" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Udpate the <cite>Scheduler</cite> with this <cite>Agent</cite>.</p>
 <dl class="docutils">
 <dt>Args:</dt>
 <dd>None.</dd>
@@ -570,7 +570,7 @@ override the `step()</cite> method to specify its implementation.</p>
 <dd><p>Update the <cite>Scheduler</cite> for given cognitive architecture (ca)</p>
 <dl class="docutils">
 <dt>Args:</dt>
-<dd>ca (CognitiveArchitecture): a target to update.</dd>
+<dd>ca (Agent): a target to update.</dd>
 <dt>Returns:</dt>
 <dd>None.</dd>
 </dl>
@@ -633,7 +633,7 @@ for the <cite>Component</cite> of interest.</p>
 <dd><p>Update the <cite>Scheduler</cite> for given cognitive architecture (ca)</p>
 <dl class="docutils">
 <dt>Args:</dt>
-<dd>ca (CognitiveArchitecture): a target to update.</dd>
+<dd>ca (Agent): a target to update.</dd>
 <dt>Returns:</dt>
 <dd>None.</dd>
 </dl>
@@ -803,6 +803,52 @@ port (Port): a Port instance to set.</dd>
 
 </div>
 </div>
+<div class="section" id="module-brica1.utils">
+<span id="brica1-utils-module"></span><h2>brica1.utils module<a class="headerlink" href="#module-brica1.utils" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="utils-py">
+<h3>utils.py<a class="headerlink" href="#utils-py" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This modules contains utility functions for BriCA.</p>
+<dl class="function">
+<dt id="brica1.utils.connect">
+<code class="descclassname">brica1.utils.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>from_tuple</em>, <em>to_tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/utils.html#connect"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.utils.connect" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Connect ports of two units</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>from_tuple (tuple&lt;Unit, str&gt;):  Unit and port id to connect from.
+to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to connect to.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="brica1.utils.alias_in_port">
+<code class="descclassname">brica1.utils.</code><code class="descname">alias_in_port</code><span class="sig-paren">(</span><em>from_tuple</em>, <em>to_tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/utils.html#alias_in_port"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.utils.alias_in_port" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Alias in-ports of two units</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>from_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias from.
+to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias to.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="brica1.utils.alias_out_port">
+<code class="descclassname">brica1.utils.</code><code class="descname">alias_out_port</code><span class="sig-paren">(</span><em>from_tuple</em>, <em>to_tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/utils.html#alias_out_port"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.utils.alias_out_port" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Alias out-ports of two units</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>from_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias from.
+to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias to.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
 <div class="section" id="module-brica1">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-brica1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="brica">
@@ -845,6 +891,10 @@ port (Port): a Port instance to set.</dd>
 </li>
 <li><a class="reference internal" href="#module-brica1.unit">brica1.unit module</a><ul>
 <li><a class="reference internal" href="#unit-py">unit.py</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-brica1.utils">brica1.utils module</a><ul>
+<li><a class="reference internal" href="#utils-py">utils.py</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-brica1">Module contents</a><ul>
