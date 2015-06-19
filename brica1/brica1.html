@@ -204,6 +204,39 @@ v (any): a state value to set.</dd>
 </dd></dl>
 
 <dl class="class">
+<dt id="brica1.component.ComponentSet">
+<em class="property">class </em><code class="descclassname">brica1.component.</code><code class="descname">ComponentSet</code><a class="reference internal" href="../_modules/brica1/component.html#ComponentSet"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.component.ComponentSet" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="#brica1.component.Component" title="brica1.component.Component"><code class="xref py py-class docutils literal"><span class="pre">brica1.component.Component</span></code></a></p>
+<p><cite>ComponentSet</cite> groups components to fire sequentially</p>
+<dl class="method">
+<dt id="brica1.component.ComponentSet.add_component">
+<code class="descname">add_component</code><span class="sig-paren">(</span><em>id</em>, <em>component</em>, <em>priority</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/component.html#ComponentSet.add_component"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.component.ComponentSet.add_component" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Add a <cite>Component</cite> for given ID and priority</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>id (str): a string ID.
+component (Component): a component to add for <cite>id</cite>.
+priority (int): a priority value for scheduling.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="brica1.component.ComponentSet.fire">
+<code class="descname">fire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/component.html#ComponentSet.fire"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.component.ComponentSet.fire" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Fire sub-components based on priority</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="brica1.component.ConstantComponent">
 <em class="property">class </em><code class="descclassname">brica1.component.</code><code class="descname">ConstantComponent</code><a class="reference internal" href="../_modules/brica1/component.html#ConstantComponent"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.component.ConstantComponent" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>ベースクラス: <a class="reference internal" href="#brica1.component.Component" title="brica1.component.Component"><code class="xref py py-class docutils literal"><span class="pre">brica1.component.Component</span></code></a></p>
@@ -418,7 +451,7 @@ container for functional <a href="#id27"><span class="problematic" id="id28">`</
 <dl class="method">
 <dt id="brica1.module.CognitiveArchitecture.add_submodule">
 <code class="descname">add_submodule</code><span class="sig-paren">(</span><em>id</em>, <em>submodule</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/module.html#CognitiveArchitecture.add_submodule"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.module.CognitiveArchitecture.add_submodule" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>add a <cite>Module</cite> and update the <cite>Scheduler</cite>.</p>
+<dd><p>Add a <cite>Module</cite> and update the <cite>Scheduler</cite>.</p>
 <dl class="docutils">
 <dt>Args:</dt>
 <dd>id (str): a string ID.
@@ -770,52 +803,6 @@ port (Port): a Port instance to set.</dd>
 
 </div>
 </div>
-<div class="section" id="module-brica1.utils">
-<span id="brica1-utils-module"></span><h2>brica1.utils module<a class="headerlink" href="#module-brica1.utils" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="utils-py">
-<h3>utils.py<a class="headerlink" href="#utils-py" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>This modules contains utility functions for BriCA.</p>
-<dl class="function">
-<dt id="brica1.utils.connect">
-<code class="descclassname">brica1.utils.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>from_tuple</em>, <em>to_tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/utils.html#connect"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.utils.connect" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Connect ports of two units</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>from_tuple (tuple&lt;Unit, str&gt;):  Unit and port id to connect from.
-to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to connect to.</dd>
-<dt>Returns:</dt>
-<dd>None.</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="brica1.utils.alias_in_port">
-<code class="descclassname">brica1.utils.</code><code class="descname">alias_in_port</code><span class="sig-paren">(</span><em>from_tuple</em>, <em>to_tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/utils.html#alias_in_port"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.utils.alias_in_port" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Alias in-ports of two units</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>from_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias from.
-to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias to.</dd>
-<dt>Returns:</dt>
-<dd>None.</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="brica1.utils.alias_out_port">
-<code class="descclassname">brica1.utils.</code><code class="descname">alias_out_port</code><span class="sig-paren">(</span><em>from_tuple</em>, <em>to_tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/utils.html#alias_out_port"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.utils.alias_out_port" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Alias out-ports of two units</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>from_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias from.
-to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias to.</dd>
-<dt>Returns:</dt>
-<dd>None.</dd>
-</dl>
-</dd></dl>
-
-</div>
-</div>
 <div class="section" id="module-brica1">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-brica1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="brica">
@@ -858,10 +845,6 @@ to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias to.</dd>
 </li>
 <li><a class="reference internal" href="#module-brica1.unit">brica1.unit module</a><ul>
 <li><a class="reference internal" href="#unit-py">unit.py</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-brica1.utils">brica1.utils module</a><ul>
-<li><a class="reference internal" href="#utils-py">utils.py</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-brica1">Module contents</a><ul>
