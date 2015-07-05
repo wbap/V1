@@ -156,7 +156,22 @@ The basic functionalities of a ``Module`` are identical to ``Components``: they 
   >>> ModA.get_all_components()
   [<brica1.component.NullComponent object at 0x10d156d10>, <brica1.component.PipeComponent object at 0x10d156ed0>, <brica1.component.ConstantComponent object at 0x10d156c50>]
 
-  
+The top-level ``Module`` which encapsulates an entire cognitive architecture is called an ``Agent``, which is combined with the ``Scheduler`` to adapt to various tasks. We will go over ``Schedulers`` and ``Agents`` more in detail below.
+
+
+Schedulers
+~~~~~~~~~~
+
+There are four types of ``Schedulers`` planned and two of them currently implemented: the ``VirtualTimeSyncScheduler`` sychronously calls ``input()``, ``fire()`, then ``output()`` methods of all encapsulated ``Components`` in order. ``VirtualTimeScheduler`` calls these methods according to the ``offset`` and ``interval`` property values of each ``Component``.
+
+
+Agents
+~~~~~~
+
+Beacause the implementation is simpler, we will show some examples for using the ``VirtualTimeSyncScheduler`` in this tutorial. Instantiate the ``Scheduler`` and pass it to the ``Agent`` constructor.
+
+>>> s = brica1.VirtualTimeSyncScheduler()
+>>> a = brica1.Agent(s)
 
 
 ComponentSets

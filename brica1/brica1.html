@@ -8,7 +8,7 @@
     
     <title>brica1 package &mdash; BriCA1 1.0.0 ドキュメント</title>
     
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,11 +25,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="top" title="BriCA1 1.0.0 ドキュメント" href="../index.html" />
-    <link rel="prev" title="Welcome to BriCA1’s documentation!" href="../index.html" />
-   
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
-
+    <link rel="prev" title="Welcome to BriCA1’s documentation!" href="../index.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -803,52 +799,6 @@ port (Port): a Port instance to set.</dd>
 
 </div>
 </div>
-<div class="section" id="module-brica1.utils">
-<span id="brica1-utils-module"></span><h2>brica1.utils module<a class="headerlink" href="#module-brica1.utils" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="utils-py">
-<h3>utils.py<a class="headerlink" href="#utils-py" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>This modules contains utility functions for BriCA.</p>
-<dl class="function">
-<dt id="brica1.utils.connect">
-<code class="descclassname">brica1.utils.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>from_tuple</em>, <em>to_tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/utils.html#connect"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.utils.connect" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Connect ports of two units</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>from_tuple (tuple&lt;Unit, str&gt;):  Unit and port id to connect from.
-to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to connect to.</dd>
-<dt>Returns:</dt>
-<dd>None.</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="brica1.utils.alias_in_port">
-<code class="descclassname">brica1.utils.</code><code class="descname">alias_in_port</code><span class="sig-paren">(</span><em>from_tuple</em>, <em>to_tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/utils.html#alias_in_port"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.utils.alias_in_port" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Alias in-ports of two units</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>from_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias from.
-to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias to.</dd>
-<dt>Returns:</dt>
-<dd>None.</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="brica1.utils.alias_out_port">
-<code class="descclassname">brica1.utils.</code><code class="descname">alias_out_port</code><span class="sig-paren">(</span><em>from_tuple</em>, <em>to_tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/utils.html#alias_out_port"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.utils.alias_out_port" title="この定義へのパーマリンク">¶</a></dt>
-<dd><p>Alias out-ports of two units</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>from_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias from.
-to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias to.</dd>
-<dt>Returns:</dt>
-<dd>None.</dd>
-</dl>
-</dd></dl>
-
-</div>
-</div>
 <div class="section" id="module-brica1">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-brica1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="brica">
@@ -893,10 +843,6 @@ to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias to.</dd>
 <li><a class="reference internal" href="#unit-py">unit.py</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-brica1.utils">brica1.utils module</a><ul>
-<li><a class="reference internal" href="#utils-py">utils.py</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#module-brica1">Module contents</a><ul>
 <li><a class="reference internal" href="#brica">BriCA</a></li>
 </ul>
@@ -932,20 +878,24 @@ to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias to.</dd>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="footer">
-      &copy;2015, ktnyt.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.4</a>
-      
-      |
-      <a href="../_sources/brica1/brica1.txt"
-          rel="nofollow">Page source</a></li>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to BriCA1’s documentation!"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">BriCA1 1.0.0 ドキュメント</a> &raquo;</li> 
+      </ul>
     </div>
-
-    
-
-    
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, ktnyt.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
   </body>
 </html>
