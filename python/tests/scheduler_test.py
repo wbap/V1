@@ -13,9 +13,54 @@ class VirtualTimeSyncSchedulerTest(unittest.TestCase):
     def setUp(self):
         pass
 
+    def test_set(self):
+        s = brica1.VirtualTimeSyncScheduler(1.0)
+        ca = brica1.Agent(s)
+
+        zero = numpy.zeros(3, dtype=numpy.short)
+        v = numpy.array([1, 2, 3], dtype=numpy.short)
+
+        CompA = brica1.ConstantComponent()
+        CompB = brica1.PipeComponent()
+        CompC = brica1.NullComponent()
+
+        CompSet = brica1.ComponentSet()
+        CompSet.add_component("CompA", CompA, 0)
+        CompSet.add_component("CompB", CompB, 1)
+        CompSet.add_component("CompC", CompC, 2)
+
+        ModA = brica1.Module()
+        ModA.add_component("CompSet", CompSet)
+
+        CompA.set_state("out", v)
+        CompA.make_out_port("out", 3)
+        CompB.make_in_port("in", 3)
+        brica1.connect((CompA, "out"), (CompB, "in"))
+        CompB.make_out_port("out", 3)
+        CompB.set_map("in", "out")
+        CompC.make_in_port("in", 3)
+        brica1.connect((CompB, "out"), (CompC, "in"))
+
+        ca.add_submodule("ModA", ModA)
+
+        self.assertTrue((CompA.get_state("out") == v).all())
+        self.assertIsNot(CompA.get_state("out"), v)
+
+        self.assertTrue((CompA.get_out_port("out").buffer == zero).all())
+        self.assertTrue((CompB.get_in_port("in").buffer   == zero).all())
+        self.assertTrue((CompB.get_out_port("out").buffer == zero).all())
+        self.assertTrue((CompC.get_in_port("in").buffer   == zero).all())
+
+        ca.step()
+
+        self.assertTrue((CompA.get_out_port("out").buffer == v).all())
+        self.assertTrue((CompB.get_in_port("in").buffer   == v).all())
+        self.assertTrue((CompB.get_out_port("out").buffer == v).all())
+        self.assertTrue((CompC.get_in_port("in").buffer   == v).all())
+
     def test_component(self):
         s = brica1.VirtualTimeSyncScheduler(1.0)
-        ca = brica1.CognitiveArchitecture(s)
+        ca = brica1.Agent(s)
 
         zero = numpy.zeros(3, dtype=numpy.short)
         v = numpy.array([1, 2, 3], dtype=numpy.short)
@@ -33,11 +78,11 @@ class VirtualTimeSyncSchedulerTest(unittest.TestCase):
         CompA.set_state("out", v)
         CompA.make_out_port("out", 3)
         CompB.make_in_port("in", 3)
-        CompB.connect(CompA, "out", "in")
+        brica1.connect((CompA, "out"), (CompB, "in"))
         CompB.make_out_port("out", 3)
         CompB.set_map("in", "out")
         CompC.make_in_port("in", 3)
-        CompC.connect(CompB, "out", "in")
+        brica1.connect((CompB, "out"), (CompC, "in"))
 
         ca.add_submodule("ModA", ModA)
 
@@ -72,7 +117,7 @@ class VirtualTimeSyncSchedulerTest(unittest.TestCase):
 
     def test_module(self):
         s = brica1.VirtualTimeSyncScheduler(1.0)
-        ca = brica1.CognitiveArchitecture(s)
+        ca = brica1.Agent(s)
 
         zero = numpy.zeros(3, dtype=numpy.short)
         v = numpy.array([1, 2, 3], dtype=numpy.short)
@@ -102,13 +147,13 @@ class VirtualTimeSyncSchedulerTest(unittest.TestCase):
         ModB.add_component("CompB", CompB)
         ModC.add_component("CompC", CompC)
 
-        CompA.alias_out_port(ModA, "out", "out")
-        CompB.alias_in_port(ModB, "in", "in")
-        CompB.alias_out_port(ModB, "out", "out")
-        CompC.alias_in_port(ModC, "in", "in")
+        brica1.alias_out_port((ModA, "out"), (CompA, "out"))
+        brica1.alias_in_port((ModB, "in"), (CompB, "in"))
+        brica1.alias_out_port((ModB, "out"), (CompB, "out"))
+        brica1.alias_in_port((ModC, "in"), (CompC, "in"))
 
-        ModB.connect(ModA, "out", "in")
-        ModC.connect(ModB, "out", "in")
+        brica1.connect((ModA, "out"), (ModB, "in"))
+        brica1.connect((ModB, "out"), (ModC, "in"))
 
         ModD.add_submodule("ModA", ModA)
         ModD.add_submodule("ModB", ModB)
@@ -163,7 +208,7 @@ class VirtualTimeSyncSchedulerTest(unittest.TestCase):
 
     def test_nested(self):
         s = brica1.VirtualTimeSyncScheduler(1.0)
-        ca = brica1.CognitiveArchitecture(s)
+        ca = brica1.Agent(s)
 
         zero = numpy.zeros(3, dtype=numpy.short)
         v = numpy.array([1, 2, 3], dtype=numpy.short)
@@ -208,23 +253,23 @@ class VirtualTimeSyncSchedulerTest(unittest.TestCase):
         ModC.add_component("CompC", CompC)
 
         # Out ports must be aliased inside-out
-        CompA.alias_out_port(ModA, "out", "out")
-        ModA.alias_out_port(SupA, "out", "out")
+        brica1.alias_out_port((ModA, "out"), (CompA, "out"))
+        brica1.alias_out_port((SupA, "out"), (ModA, "out"))
 
         # In ports must be aliased outside-in
-        ModB.alias_in_port(SupB, "in", "in")
-        CompB.alias_in_port(ModB, "in", "in")
+        brica1.alias_in_port((SupB, "in"), (ModB, "in"))
+        brica1.alias_in_port((ModB, "in"), (CompB, "in"))
 
         # Out ports must be aliased inside-out
-        CompB.alias_out_port(ModB, "out", "out")
-        ModB.alias_out_port(SupB, "out", "out")
+        brica1.alias_out_port((ModB, "out"), (CompB, "out"))
+        brica1.alias_out_port((SupB, "out"), (ModB, "out"))
 
         # In ports must be aliased outside-in
-        ModC.alias_in_port(SupC, "in", "in")
-        CompC.alias_in_port(ModC, "in", "in")
+        brica1.alias_in_port((SupC, "in"), (ModC, "in"))
+        brica1.alias_in_port((ModC, "in"), (CompC, "in"))
 
-        SupB.connect(SupA, "out", "in")
-        SupC.connect(SupB, "out", "in")
+        brica1.connect((SupA, "out"), (SupB, "in"))
+        brica1.connect((SupB, "out"), (SupC, "in"))
 
         Top.add_submodule("SupA", SupA)
         Top.add_submodule("SupB", SupB)
@@ -297,9 +342,47 @@ class VirtualTimeSchedulerTest(unittest.TestCase):
     def setUp(self):
         pass
 
+    def test_set(self):
+        s = brica1.VirtualTimeScheduler()
+        ca = brica1.Agent(s)
+
+        zero = numpy.zeros(3, dtype=numpy.short)
+        v = numpy.array([1, 2, 3], dtype=numpy.short)
+
+        CompA = brica1.ConstantComponent()
+        CompB = brica1.PipeComponent()
+        CompC = brica1.NullComponent()
+
+        CompSet = brica1.ComponentSet()
+        CompSet.add_component("CompA", CompA, 0)
+        CompSet.add_component("CompB", CompB, 1)
+        CompSet.add_component("CompC", CompC, 2)
+
+        ModA = brica1.Module()
+        ModA.add_component("CompSet", CompSet)
+
+        CompA.set_state("out", v)
+        CompA.make_out_port("out", 3)
+        CompB.make_in_port("in", 3)
+        brica1.connect((CompA, "out"), (CompB, "in"))
+        CompB.make_out_port("out", 3)
+        CompB.set_map("in", "out")
+        CompC.make_in_port("in", 3)
+        brica1.connect((CompB, "out"), (CompC, "in"))
+
+        ca.add_submodule("ModA", ModA)
+
+        self.assertTrue((CompA.get_state("out") == v).all())
+        self.assertIsNot(CompA.get_state("out"), v)
+
+        self.assertTrue((CompA.get_out_port("out").buffer == v).all())
+        self.assertTrue((CompB.get_in_port("in").buffer   == v).all())
+        self.assertTrue((CompB.get_out_port("out").buffer == v).all())
+        self.assertTrue((CompC.get_in_port("in").buffer   == v).all())
+
     def test_component(self):
         s = brica1.VirtualTimeScheduler()
-        ca = brica1.CognitiveArchitecture(s)
+        ca = brica1.Agent(s)
 
         zero = numpy.zeros(3, dtype=numpy.short)
         v = numpy.array([1, 2, 3], dtype=numpy.short)
@@ -325,11 +408,11 @@ class VirtualTimeSchedulerTest(unittest.TestCase):
         CompA.set_state("out", v)
         CompA.make_out_port("out", 3)
         CompB.make_in_port("in", 3)
-        CompB.connect(CompA, "out", "in")
+        brica1.connect((CompA, "out"), (CompB, "in"))
         CompB.make_out_port("out", 3)
         CompB.set_map("in", "out")
         CompC.make_in_port("in", 3)
-        CompC.connect(CompB, "out", "in")
+        brica1.connect((CompB, "out"), (CompC, "in"))
 
         ca.add_submodule("ModA", ModA)
 
@@ -415,7 +498,7 @@ class VirtualTimeSchedulerTest(unittest.TestCase):
 
     def test_module(self):
         s = brica1.VirtualTimeScheduler()
-        ca = brica1.CognitiveArchitecture(s)
+        ca = brica1.Agent(s)
 
         zero = numpy.zeros(3, dtype=numpy.short)
         v = numpy.array([1, 2, 3], dtype=numpy.short)
@@ -453,13 +536,13 @@ class VirtualTimeSchedulerTest(unittest.TestCase):
         ModB.add_component("CompB", CompB)
         ModC.add_component("CompC", CompC)
 
-        CompA.alias_out_port(ModA, "out", "out")
-        CompB.alias_in_port(ModB, "in", "in")
-        CompB.alias_out_port(ModB, "out", "out")
-        CompC.alias_in_port(ModC, "in", "in")
+        brica1.alias_out_port((ModA, "out"), (CompA, "out"))
+        brica1.alias_in_port((ModB, "in"), (CompB, "in"))
+        brica1.alias_out_port((ModB, "out"), (CompB, "out"))
+        brica1.alias_in_port((ModC, "in"), (CompC, "in"))
 
-        ModB.connect(ModA, "out", "in")
-        ModC.connect(ModB, "out", "in")
+        brica1.connect((ModA, "out"), (ModB, "in"))
+        brica1.connect((ModB, "out"), (ModC, "in"))
 
         ModD.add_submodule("ModA", ModA)
         ModD.add_submodule("ModB", ModB)
@@ -589,7 +672,7 @@ class VirtualTimeSchedulerTest(unittest.TestCase):
 
     def test_nested(self):
         s = brica1.VirtualTimeScheduler()
-        ca = brica1.CognitiveArchitecture(s)
+        ca = brica1.Agent(s)
 
         zero = numpy.zeros(3, dtype=numpy.short)
         v = numpy.array([1, 2, 3], dtype=numpy.short)
@@ -642,23 +725,23 @@ class VirtualTimeSchedulerTest(unittest.TestCase):
         ModC.add_component("CompC", CompC)
 
         # Out ports must be aliased inside-out
-        CompA.alias_out_port(ModA, "out", "out")
-        ModA.alias_out_port(SupA, "out", "out")
+        brica1.alias_out_port((ModA, "out"), (CompA, "out"))
+        brica1.alias_out_port((SupA, "out"), (ModA, "out"))
 
         # In ports must be aliased outside-in
-        ModB.alias_in_port(SupB, "in", "in")
-        CompB.alias_in_port(ModB, "in", "in")
+        brica1.alias_in_port((SupB, "in"), (ModB, "in"))
+        brica1.alias_in_port((ModB, "in"), (CompB, "in"))
 
         # Out ports must be aliased inside-out
-        CompB.alias_out_port(ModB, "out", "out")
-        ModB.alias_out_port(SupB, "out", "out")
+        brica1.alias_out_port((ModB, "out"), (CompB, "out"))
+        brica1.alias_out_port((SupB, "out"), (ModB, "out"))
 
         # In ports must be aliased outside-in
-        ModC.alias_in_port(SupC, "in", "in")
-        CompC.alias_in_port(ModC, "in", "in")
+        brica1.alias_in_port((SupC, "in"), (ModC, "in"))
+        brica1.alias_in_port((ModC, "in"), (CompC, "in"))
 
-        SupB.connect(SupA, "out", "in")
-        SupC.connect(SupB, "out", "in")
+        brica1.connect((SupA, "out"), (SupB, "in"))
+        brica1.connect((SupB, "out"), (SupC, "in"))
 
         Top.add_submodule("SupA", SupA)
         Top.add_submodule("SupB", SupB)
