@@ -211,7 +211,10 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_in_port</span><span class="p">(</span><span class="n">to_id</span><span class="p">,</span> <span class="n">target</span><span class="o">.</span><span class="n">get_in_port</span><span class="p">(</span><span class="n">from_id</span><span class="p">))</span>
+        <span class="n">to_port</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_in_port</span><span class="p">(</span><span class="n">to_id</span><span class="p">)</span>
+        <span class="n">from_port</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">get_in_port</span><span class="p">(</span><span class="n">from_id</span><span class="p">)</span>
+        <span class="n">from_port</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">to_port</span><span class="o">.</span><span class="n">callbacks</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_in_port</span><span class="p">(</span><span class="n">to_id</span><span class="p">,</span> <span class="n">from_port</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="Unit.alias_out_port"><a class="viewcode-back" href="../../brica1/brica1.html#brica1.unit.Unit.alias_out_port">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">alias_out_port</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">from_id</span><span class="p">,</span> <span class="n">to_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Alias an out-port from a target `Unit` to this `Unit`.</span>

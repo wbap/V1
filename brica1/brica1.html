@@ -513,6 +513,30 @@ There may only be one outward connection but multiple inward connections.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="brica1.port.Port.invoke_callbacks">
+<code class="descname">invoke_callbacks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/port.html#Port.invoke_callbacks"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.port.Port.invoke_callbacks" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Invoke all callback functions with buffer value as argument</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="brica1.port.Port.register_callback">
+<code class="descname">register_callback</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/port.html#Port.register_callback"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.port.Port.register_callback" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Register a callback function to this <cite>Port</cite></p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>f (Function): a function to register</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="brica1.port.Port.sync">
 <code class="descname">sync</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/port.html#Port.sync"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.port.Port.sync" title="この定義へのパーマリンク">¶</a></dt>
 <dd><p>Sync self with the <cite>Connection</cite>.</p>
@@ -636,6 +660,53 @@ for the <cite>Component</cite> of interest.</p>
 <dd>ca (Agent): a target to update.</dd>
 <dt>Returns:</dt>
 <dd>None.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="brica1.scheduler.RealTimeSyncScheduler">
+<em class="property">class </em><code class="descclassname">brica1.scheduler.</code><code class="descname">RealTimeSyncScheduler</code><span class="sig-paren">(</span><em>interval=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/scheduler.html#RealTimeSyncScheduler"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.scheduler.RealTimeSyncScheduler" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="#brica1.scheduler.Scheduler" title="brica1.scheduler.Scheduler"><code class="xref py py-class docutils literal"><span class="pre">brica1.scheduler.Scheduler</span></code></a></p>
+<p><cite>RealTimeSyncScheduler</cite> is a <cite>Scheduler</cite> implementation for real time
+in a synced manner.</p>
+<dl class="method">
+<dt id="brica1.scheduler.RealTimeSyncScheduler.reset">
+<code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/scheduler.html#RealTimeSyncScheduler.reset"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.scheduler.RealTimeSyncScheduler.reset" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="brica1.scheduler.RealTimeSyncScheduler.set_interval">
+<code class="descname">set_interval</code><span class="sig-paren">(</span><em>interval</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/scheduler.html#RealTimeSyncScheduler.set_interval"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.scheduler.RealTimeSyncScheduler.set_interval" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="brica1.scheduler.RealTimeSyncScheduler.step">
+<code class="descname">step</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/scheduler.html#RealTimeSyncScheduler.step"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.scheduler.RealTimeSyncScheduler.step" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Step by the internal interval.</p>
+<p>The methods <cite>input()</cite>, <cite>fire()</cite>, and <cite>output()</cite> are synchronously
+called for all components.</p>
+<p>The time when it started calling input() and output() of the 
+components is stored in self.last_input_time and 
+self.last_output_time, respectively.</p>
+<p>self.interval sets the <em>minimum</em> interval between the point in
+time when input() is called and when output() is called.
+The actual interval between input() and output() will 
+always be longer than self.interval, although the scheduler
+tries to make the discrepancy minimum.</p>
+<p>When calling fire() of the components takes longer than the
+set interval, calling output() of the components will be 
+later than the scheduled time self.input_time + self.interval.
+In this case, self.lagged will be set True.</p>
+<p>During the execution of this method, it will also set self.last_spent,
+which will be the time spent until all components are fired
+after self.last_input_time is set.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None.</dd>
+<dt>Returns:</dt>
+<dd>float: the current time of the <cite>Scheduler</cite>.</dd>
 </dl>
 </dd></dl>
 
@@ -808,6 +879,16 @@ port (Port): a Port instance to set.</dd>
 <div class="section" id="utils-py">
 <h3>utils.py<a class="headerlink" href="#utils-py" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>This modules contains utility functions for BriCA.</p>
+<dl class="function">
+<dt id="brica1.utils.current_time">
+<code class="descclassname">brica1.utils.</code><code class="descname">current_time</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/utils.html#current_time"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.utils.current_time" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="brica1.utils.current_time_millis">
+<code class="descclassname">brica1.utils.</code><code class="descname">current_time_millis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/utils.html#current_time_millis"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.utils.current_time_millis" title="この定義へのパーマリンク">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="function">
 <dt id="brica1.utils.connect">
 <code class="descclassname">brica1.utils.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>from_tuple</em>, <em>to_tuple</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/utils.html#connect"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.utils.connect" title="この定義へのパーマリンク">¶</a></dt>

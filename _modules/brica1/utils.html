@@ -58,8 +58,16 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;connect&quot;</span><span class="p">,</span> <span class="s">&quot;alias_in_port&quot;</span><span class="p">,</span> <span class="s">&quot;alias_out_port&quot;</span><span class="p">]</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;current_time&quot;</span><span class="p">,</span> <span class="s">&quot;current_time_millis&quot;</span><span class="p">,</span> <span class="s">&quot;connect&quot;</span><span class="p">,</span> <span class="s">&quot;alias_in_port&quot;</span><span class="p">,</span> <span class="s">&quot;alias_out_port&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="current_time"><a class="viewcode-back" href="../../brica1/brica1.html#brica1.utils.current_time">[ドキュメント]</a><span class="k">def</span> <span class="nf">current_time</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="current_time_millis"><a class="viewcode-back" href="../../brica1/brica1.html#brica1.utils.current_time_millis">[ドキュメント]</a><span class="k">def</span> <span class="nf">current_time_millis</span><span class="p">():</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+</div>
 <div class="viewcode-block" id="connect"><a class="viewcode-back" href="../../brica1/brica1.html#brica1.utils.connect">[ドキュメント]</a><span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="n">from_tuple</span><span class="p">,</span> <span class="n">to_tuple</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Connect ports of two units</span>
 
