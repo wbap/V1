@@ -552,6 +552,64 @@ There may only be one outward connection but multiple inward connections.</p>
 
 </div>
 </div>
+<div class="section" id="module-brica1.ros">
+<span id="brica1-ros-module"></span><h2>brica1.ros module<a class="headerlink" href="#module-brica1.ros" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="ros-py">
+<h3>ros.py<a class="headerlink" href="#ros-py" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>This module containes classes for ROS integration.</p>
+<dl class="class">
+<dt id="brica1.ros.ROSAdapter">
+<em class="property">class </em><code class="descclassname">brica1.ros.</code><code class="descname">ROSAdapter</code><span class="sig-paren">(</span><em>name='BriCA1 Node'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/ros.html#ROSAdapter"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.ros.ROSAdapter" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="#brica1.unit.Unit" title="brica1.unit.Unit"><code class="xref py py-class docutils literal"><span class="pre">brica1.unit.Unit</span></code></a></p>
+<p><cite>ROSAdapter</cite> is a BriCA <cite>Unit</cite> which is intented to provide a bridge over the
+ROS Publisher/Subscriber and BriCA <cite>Agent</cite>.</p>
+<dl class="method">
+<dt id="brica1.ros.ROSAdapter.connect">
+<code class="descname">connect</code><span class="sig-paren">(</span><em>target</em>, <em>from_id</em>, <em>to_id</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/ros.html#ROSAdapter.connect"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.ros.ROSAdapter.connect" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Connect an out-port of another <cite>Unit</cite> to an in-port.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>target (Unit): a <cite>Unit</cite> to connect to.
+from_id (str): an out-port of the target <cite>Unit</cite>.
+to_id(str): an in-port of this <cite>Unit</cite>.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="brica1.ros.ROSAdapter.setup_publisher">
+<code class="descname">setup_publisher</code><span class="sig-paren">(</span><em>topic</em>, <em>id</em>, <em>length</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/ros.html#ROSAdapter.setup_publisher"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.ros.ROSAdapter.setup_publisher" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Setup a ROS subscriber</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>topic (str): a topic to subscribe to.
+id (str): a string ID.
+length (int): an initial length of the value vector.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="brica1.ros.ROSAdapter.setup_subscriber">
+<code class="descname">setup_subscriber</code><span class="sig-paren">(</span><em>topic</em>, <em>msg_type</em>, <em>id</em>, <em>length</em>, <em>converter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/brica1/ros.html#ROSAdapter.setup_subscriber"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#brica1.ros.ROSAdapter.setup_subscriber" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>Setup a ROS subscriber</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>topic (str): a topic to subscribe to.
+msg_type (msg): incoming message type.
+id (str): a string ID.
+length (int): an initial length of the value vector.</dd>
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
 <div class="section" id="module-brica1.scheduler">
 <span id="brica1-scheduler-module"></span><h2>brica1.scheduler module<a class="headerlink" href="#module-brica1.scheduler" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="scheduler-py">
@@ -964,6 +1022,10 @@ to_tuple (tuple&lt;Unit, str&gt;): Unit and port id to alias to.</dd>
 </li>
 <li><a class="reference internal" href="#module-brica1.port">brica1.port module</a><ul>
 <li><a class="reference internal" href="#port-py">port.py</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-brica1.ros">brica1.ros module</a><ul>
+<li><a class="reference internal" href="#ros-py">ros.py</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-brica1.scheduler">brica1.scheduler module</a><ul>
